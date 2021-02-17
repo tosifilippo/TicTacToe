@@ -24,6 +24,9 @@ const gameBoard = (() => {
     boardGrid.append(topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight);
 })();
 
-const playerFactory = () => {
+const playerFactory = (mark) => {
+    return { mark };
+};
 
-};  
+const playerOne = playerFactory("X");
+const playerTwo = playerFactory("O");
