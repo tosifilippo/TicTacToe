@@ -1,6 +1,6 @@
 // player factory
-const playerFactory = (mark, name) => {
-    return { mark, name };
+const playerFactory = (mark, name, species) => {
+    return { mark, name, species };
 };
 
 // game board module
@@ -8,8 +8,8 @@ const gameBoard = (() => {
     // setting the board as an array with nine strings
     let boardArray = ["","","","","","","","",""];
     // creating player X and player O
-    const playerOne = playerFactory("X", "PLAYER ONE");
-    const playerTwo = playerFactory("O", "PLAYER TWO");
+    const playerOne = playerFactory("X", "PLAYER ONE", "HUMAN");
+    const playerTwo = playerFactory("O", "PLAYER TWO", "HUMAN");
     let gameOver;
     let tieGame;
     // looks for winning combination in rows
@@ -95,9 +95,12 @@ const gameBoard = (() => {
     function getNames() {
         playerOne.name = firstText.value.toUpperCase();
         playerTwo.name = secondText.value.toUpperCase();
-        const vs = document.getElementById("VS");
+        if (form[3].checked) {
+            playerTwo.species = "AI"
+        }
         // updates match details
-        vs.innerHTML = playerOne.name + " vs " + playerTwo.name;
+        const vs = document.getElementById("VS");
+        vs.innerHTML = playerOne.name + " (" + playerOne.species + ") vs " + playerTwo.name + " (" + playerTwo.species + ")";
     }
     // targeting elements
     const topLeft = document.getElementById("top-left");
@@ -113,6 +116,7 @@ const gameBoard = (() => {
     const firstText = document.getElementById("player1name");
     const secondText = document.getElementById("player2name");
     const submit = document.getElementById("submit");
+    const form = document.getElementById("form")
     // onclick functions
     topLeft.onclick = function(){setMark(this, 0)};
     topMiddle.onclick = function(){setMark(this, 1)};
