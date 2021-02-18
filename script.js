@@ -10,8 +10,32 @@ const gameBoard = (() => {
     // creating player X and player O
     const playerOne = playerFactory("X");
     const playerTwo = playerFactory("O");
+    let gameOver = false;
+    // looks for winning combination in rows
+    function checkRows() {
+        if ((boardArray[0] == boardArray[1]) && (boardArray[1] == boardArray[2]) && (!boardArray[0] == "") ||
+        (boardArray[3] == boardArray[4]) && (boardArray[4] == boardArray[5]) && (!boardArray[3] == "") ||
+        (boardArray[6] == boardArray[7]) && (boardArray[7] == boardArray[8]) && (!boardArray[6] == "")) {
+            gameOver = true;
+        };
+    };
+    // looks for winning combination in columns
+    function checkColumns() {
+        if ((boardArray[0] == boardArray[3]) && (boardArray[3] == boardArray[6]) && (!boardArray[0] == "") ||
+        (boardArray[1] == boardArray[4]) && (boardArray[4] == boardArray[7]) && (!boardArray[1] == "") ||
+        (boardArray[2] == boardArray[5]) && (boardArray[5] == boardArray[8]) && (!boardArray[2] == "")) {
+            gameOver = true;
+        };
+    };
+    // looks for winning combination in diagonals
+    function checkDiagonals() {
+        if ((boardArray[0] == boardArray[4]) && (boardArray[4] == boardArray[8]) && (!boardArray[0] == "") ||
+        (boardArray[2] == boardArray[4]) && (boardArray[4] == boardArray[6]) && (!boardArray[2] == "")) {
+            gameOver = true;
+        };
+    };
     // counts how many Xs and Os are on the board and determines whose turn it is. 
-    // Does not run unless clicked field is empty.
+    // it also looks for winner, does not run unless clicked field is empty.
     function setMark(field, index) {
         let counts = {};
         boardArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
@@ -22,9 +46,15 @@ const gameBoard = (() => {
             field.innerHTML = playerTwo.mark
             boardArray[index] = "O"
         };
+        checkRows();
+        checkColumns();
+        checkDiagonals();
+        if (gameOver == true) {
+            console.log("GAME OVER")
+        };
     };
     // set mark is returned to be used onclick
-    return { setMark };
+    return { boardArray, setMark };
 })();
 
 const gameController = (() => {
