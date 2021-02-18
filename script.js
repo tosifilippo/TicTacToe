@@ -80,43 +80,24 @@ const gameBoard = (() => {
         };
         declareWinner();
     };
-    // set mark is returned to be used onclick
-    return { setMark };
-})();
-
-const gameController = (() => {
-    // creating a grid for the board
-    const boardGrid = document.createElement("div");
-    boardGrid.id =  "board-grid";
-    document.body.appendChild(boardGrid);
-    // creating the nine fields on the grid
-    const topLeft = document.createElement("button");
-    topLeft.classList.add("field-button");
-    const topMiddle = document.createElement("button");
-    topMiddle.classList.add("field-button");
-    const topRight = document.createElement("button");
-    topRight.classList.add("field-button");
-    const centerLeft = document.createElement("button");
-    centerLeft.classList.add("field-button");
-    const centerMiddle = document.createElement("button");
-    centerMiddle.classList.add("field-button");
-    const centerRight = document.createElement("button");
-    centerRight.classList.add("field-button");
-    const bottomLeft = document.createElement("button");
-    bottomLeft.classList.add("field-button");
-    const bottomMiddle = document.createElement("button");
-    bottomMiddle.classList.add("field-button");
-    const bottomRight = document.createElement("button");
-    bottomRight.classList.add("field-button");
-    boardGrid.append(topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight);
+    // targeting the grid and its nine fields
+    const topLeft = document.getElementById("top-left");
+    const topMiddle = document.getElementById("top-middle");
+    const topRight = document.getElementById("top-right");
+    const centerLeft = document.getElementById("center-left");
+    const centerMiddle = document.getElementById("center-middle");
+    const centerRight = document.getElementById("center-right");
+    const bottomLeft = document.getElementById("bottom-left");
+    const bottomMiddle = document.getElementById("bottom-middle");
+    const bottomRight = document.getElementById("bottom-right");
     // all fields call set mark on click
-    topLeft.onclick = function(){gameBoard.setMark(this, 0)};
-    topMiddle.onclick = function(){gameBoard.setMark(this, 1)};
-    topRight.onclick = function(){gameBoard.setMark(this, 2)};
-    centerLeft.onclick = function(){gameBoard.setMark(this, 3)};
-    centerMiddle.onclick = function(){gameBoard.setMark(this, 4)};
-    centerRight.onclick = function(){gameBoard.setMark(this, 5)};
-    bottomLeft.onclick = function(){gameBoard.setMark(this, 6)};
-    bottomMiddle.onclick = function(){gameBoard.setMark(this, 7)};
-    bottomRight.onclick = function(){gameBoard.setMark(this, 8)};
+    topLeft.onclick = function(){setMark(this, 0)};
+    topMiddle.onclick = function(){setMark(this, 1)};
+    topRight.onclick = function(){setMark(this, 2)};
+    centerLeft.onclick = function(){setMark(this, 3)};
+    centerMiddle.onclick = function(){setMark(this, 4)};
+    centerRight.onclick = function(){setMark(this, 5)};
+    bottomLeft.onclick = function(){setMark(this, 6)};
+    bottomMiddle.onclick = function(){setMark(this, 7)};
+    bottomRight.onclick = function(){setMark(this, 8)};
 })();
