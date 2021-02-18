@@ -53,24 +53,32 @@ const gameBoard = (() => {
             field.innerHTML = playerTwo.mark
             boardArray[index] = "O"
         };
-        checkRows();
-        checkColumns();
-        checkDiagonals();
-        checkTie();
-        // if game is over field buttons are disabled
-        if (gameOver == true) {
-            console.log("GAME OVER");
-            document.querySelectorAll('button.field-button').forEach(element => {
-                element.disabled = true;
-            });
+        function declareWinner() {
+            checkRows();
+            checkColumns();
+            checkDiagonals();
+            checkTie();
+            // checks who won and disables field buttons
+            if ((gameOver == true) && (counts.X <= counts.O)) {
+                console.log("GAME OVER, VINCE X!");
+                document.querySelectorAll('button.field-button').forEach(element => {
+                    element.disabled = true;
+                });
+            } else if ((gameOver == true) && (counts.X > counts.O)) {
+                console.log("GAME OVER, VINCE O!");
+                document.querySelectorAll('button.field-button').forEach(element => {
+                    element.disabled = true;
+                });
+            };
+            // if game is tie field buttons are disabled
+            if (tieGame == true) {
+                console.log("TIE GAME");
+                document.querySelectorAll('button.field-button').forEach(element => {
+                    element.disabled = true;
+                });
+            };
         };
-        // if game is tie field buttons are disabled
-        if (tieGame == true) {
-            console.log("TIE GAME");
-            document.querySelectorAll('button.field-button').forEach(element => {
-                element.disabled = true;
-            });
-        }
+        declareWinner();
     };
     // set mark is returned to be used onclick
     return { setMark };
