@@ -6,7 +6,7 @@ const playerFactory = (mark, name) => {
 // game board module
 const gameBoard = (() => {
     // setting the board as an array with nine strings
-    const boardArray = ["","","","","","","","",""];
+    let boardArray = ["","","","","","","","",""];
     // creating player X and player O
     const playerOne = playerFactory("X");
     const playerTwo = playerFactory("O");
@@ -81,7 +81,14 @@ const gameBoard = (() => {
         };
         declareWinner();
     };
-    // targeting the grid and its nine fields
+    // resets board html and array
+    function reset() {
+        boardArray = ["","","","","","","","",""];
+        document.querySelectorAll('button.field-button').forEach(element => {
+            element.innerHTML = "";
+        });
+    };
+    // targeting elements
     const topLeft = document.getElementById("top-left");
     const topMiddle = document.getElementById("top-middle");
     const topRight = document.getElementById("top-right");
@@ -91,7 +98,8 @@ const gameBoard = (() => {
     const bottomLeft = document.getElementById("bottom-left");
     const bottomMiddle = document.getElementById("bottom-middle");
     const bottomRight = document.getElementById("bottom-right");
-    // all fields call set mark on click
+    const restart = document.getElementById("restart")
+    // onclick functions
     topLeft.onclick = function(){setMark(this, 0)};
     topMiddle.onclick = function(){setMark(this, 1)};
     topRight.onclick = function(){setMark(this, 2)};
@@ -101,4 +109,5 @@ const gameBoard = (() => {
     bottomLeft.onclick = function(){setMark(this, 6)};
     bottomMiddle.onclick = function(){setMark(this, 7)};
     bottomRight.onclick = function(){setMark(this, 8)};
+    restart.onclick = reset;
 })();
