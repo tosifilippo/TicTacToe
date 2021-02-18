@@ -61,12 +61,12 @@ const gameBoard = (() => {
             checkTie();
             // checks who won and disables field buttons
             if ((gameOver == true) && (counts.X <= counts.O)) {
-                display.innerHTML = "GAME OVER, VINCE X!";
+                display.innerHTML = "GAME OVER, X WINS!";
                 document.querySelectorAll('button.field-button').forEach(element => {
                     element.disabled = true;
                 });
             } else if ((gameOver == true) && (counts.X > counts.O)) {
-                display.innerHTML = "GAME OVER, VINCE O!";
+                display.innerHTML = "GAME OVER, O WINS!";
                 document.querySelectorAll('button.field-button').forEach(element => {
                     element.disabled = true;
                 });

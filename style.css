@@ -1,11 +1,11 @@
+body {
+    text-align: center;
+}
+
 #board-grid {
     display: grid;
     grid-template-columns: 130px 130px 130px;
     grid-template-rows: 130px 130px 130px;
     text-align: center;
     justify-content: center;
-}
-
-#display {
-    text-align: center;
 }
