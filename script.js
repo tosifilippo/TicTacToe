@@ -10,7 +10,7 @@ const gameBoard = (() => {
     // creating player X and player O
     const playerOne = playerFactory("X");
     const playerTwo = playerFactory("O");
-    let gameOver = false;
+    let gameOver;
     // looks for winning combination in rows
     function checkRows() {
         if ((boardArray[0] == boardArray[1]) && (boardArray[1] == boardArray[2]) && (!boardArray[0] == "") ||
@@ -49,12 +49,16 @@ const gameBoard = (() => {
         checkRows();
         checkColumns();
         checkDiagonals();
+        // if game is over field buttons are disabled
         if (gameOver == true) {
-            console.log("GAME OVER")
+            console.log("GAME OVER");
+            document.querySelectorAll('button.field-button').forEach(element => {
+                element.disabled = true;
+            });
         };
     };
     // set mark is returned to be used onclick
-    return { boardArray, setMark };
+    return { setMark };
 })();
 
 const gameController = (() => {
@@ -64,14 +68,23 @@ const gameController = (() => {
     document.body.appendChild(boardGrid);
     // creating the nine fields on the grid
     const topLeft = document.createElement("button");
+    topLeft.classList.add("field-button");
     const topMiddle = document.createElement("button");
+    topMiddle.classList.add("field-button");
     const topRight = document.createElement("button");
+    topRight.classList.add("field-button");
     const centerLeft = document.createElement("button");
+    centerLeft.classList.add("field-button");
     const centerMiddle = document.createElement("button");
+    centerMiddle.classList.add("field-button");
     const centerRight = document.createElement("button");
+    centerRight.classList.add("field-button");
     const bottomLeft = document.createElement("button");
+    bottomLeft.classList.add("field-button");
     const bottomMiddle = document.createElement("button");
+    bottomMiddle.classList.add("field-button");
     const bottomRight = document.createElement("button");
+    bottomRight.classList.add("field-button");
     boardGrid.append(topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight);
     // all fields call set mark on click
     topLeft.onclick = function(){gameBoard.setMark(this, 0)};
