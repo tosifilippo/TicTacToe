@@ -8,8 +8,8 @@ const gameBoard = (() => {
     // setting the board as an array with nine strings
     let boardArray = ["","","","","","","","",""];
     // creating player X and player O
-    const playerOne = playerFactory("X", "Player One");
-    const playerTwo = playerFactory("O", "Player Two");
+    const playerOne = playerFactory("X", "PLAYER ONE");
+    const playerTwo = playerFactory("O", "PLAYER TWO");
     let gameOver;
     let tieGame;
     // looks for winning combination in rows
@@ -93,8 +93,11 @@ const gameBoard = (() => {
     };
     // gets player names from input field
     function getNames() {
-        playerOne.name = firstText.value;
-        playerTwo.name = secondText.value;
+        playerOne.name = firstText.value.toUpperCase();
+        playerTwo.name = secondText.value.toUpperCase();
+        const vs = document.getElementById("VS");
+        // updates match details
+        vs.innerHTML = playerOne.name + " vs " + playerTwo.name;
     }
     // targeting elements
     const topLeft = document.getElementById("top-left");
