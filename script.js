@@ -1,57 +1,56 @@
-const gameBoard = (() => {
-    const boardArray = ["","","","","","","","",""];
-    const boardGrid = document.createElement("div");
-    boardGrid.id =  "board-grid";
-    document.body.appendChild(boardGrid);
-    const topLeft = document.createElement("button");
-    topLeft.innerHTML = boardArray[0];
-    const topMiddle = document.createElement("button");
-    topMiddle.innerHTML = boardArray[1];
-    const topRight = document.createElement("button");
-    topRight.innerHTML = boardArray[2];
-    const centerLeft = document.createElement("button");
-    centerLeft.innerHTML = boardArray[3];
-    const centerMiddle = document.createElement("button");
-    centerMiddle.innerHTML = boardArray[4];
-    const centerRight = document.createElement("button");
-    centerRight.innerHTML = boardArray[5];
-    const bottomLeft = document.createElement("button");
-    bottomLeft.innerHTML = boardArray[6];
-    const bottomMiddle = document.createElement("button");
-    bottomMiddle.innerHTML = boardArray[7];
-    const bottomRight = document.createElement("button");
-    bottomRight.innerHTML = boardArray[8];
-    boardGrid.append(topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight);
-    return {
-        boardArray, topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight
-    };
-})();
-
+// player factory
 const playerFactory = (mark) => {
     return { mark };
 };
 
-const gameController = (() => {
+// game board module
+const gameBoard = (() => {
+    // setting the board as an array with nine strings
+    const boardArray = ["","","","","","","","",""];
+    // creating player X and player O
     const playerOne = playerFactory("X");
     const playerTwo = playerFactory("O");
+    // counts how many Xs and Os are on the board and determines whose turn it is. 
+    // Does not run unless clicked field is empty.
     function setMark(field, index) {
         let counts = {};
-        gameBoard.boardArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
+        boardArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
         if (((counts.X === undefined) || (counts.X <= counts.O)) && (field.innerHTML === "")) {
             field.innerHTML = playerOne.mark    
-            gameBoard.boardArray[index] = "X"
+            boardArray[index] = "X"
         } else if (field.innerHTML === "") {
             field.innerHTML = playerTwo.mark
-            gameBoard.boardArray[index] = "O"
+            boardArray[index] = "O"
         };
-    }
-    gameBoard.topLeft.onclick = function(){setMark(this, 0)};
-    gameBoard.topMiddle.onclick = function(){setMark(this, 1)};
-    gameBoard.topRight.onclick = function(){setMark(this, 2)};
-    gameBoard.centerLeft.onclick = function(){setMark(this, 3)};
-    gameBoard.centerMiddle.onclick = function(){setMark(this, 4)};
-    gameBoard.centerRight.onclick = function(){setMark(this, 5)};
-    gameBoard.bottomLeft.onclick = function(){setMark(this, 6)};
-    gameBoard.bottomMiddle.onclick = function(){setMark(this, 7)};
-    gameBoard.bottomRight.onclick = function(){setMark(this, 8)};
+    };
+    // set mark is returned to be used onclick
+    return { setMark };
+})();
+
+const gameController = (() => {
+    // creating a grid for the board
+    const boardGrid = document.createElement("div");
+    boardGrid.id =  "board-grid";
+    document.body.appendChild(boardGrid);
+    // creating the nine fields on the grid
+    const topLeft = document.createElement("button");
+    const topMiddle = document.createElement("button");
+    const topRight = document.createElement("button");
+    const centerLeft = document.createElement("button");
+    const centerMiddle = document.createElement("button");
+    const centerRight = document.createElement("button");
+    const bottomLeft = document.createElement("button");
+    const bottomMiddle = document.createElement("button");
+    const bottomRight = document.createElement("button");
+    boardGrid.append(topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight);
+    // all fields call set mark on click
+    topLeft.onclick = function(){gameBoard.setMark(this, 0)};
+    topMiddle.onclick = function(){gameBoard.setMark(this, 1)};
+    topRight.onclick = function(){gameBoard.setMark(this, 2)};
+    centerLeft.onclick = function(){gameBoard.setMark(this, 3)};
+    centerMiddle.onclick = function(){gameBoard.setMark(this, 4)};
+    centerRight.onclick = function(){gameBoard.setMark(this, 5)};
+    bottomLeft.onclick = function(){gameBoard.setMark(this, 6)};
+    bottomMiddle.onclick = function(){gameBoard.setMark(this, 7)};
+    bottomRight.onclick = function(){gameBoard.setMark(this, 8)};
 })();
