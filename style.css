@@ -1,16 +1,11 @@
-body {
-    display: flex;
+#board-grid {
+    display: grid;
+    grid-template-columns: 130px 130px 130px;
+    grid-template-rows: 130px 130px 130px;
+    text-align: center;
     justify-content: center;
 }
 
-#board-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    text-align: center;
-    width: 50%;
-}
-
 #display {
-    grid-column: 1/5;
+    text-align: center;
 }

@@ -1,6 +1,6 @@
 // player factory
-const playerFactory = (mark) => {
-    return { mark };
+const playerFactory = (mark, name) => {
+    return { mark, name };
 };
 
 // game board module
