@@ -32,24 +32,26 @@ const playerFactory = (mark) => {
 };
 
 const gameController = (() => {
-    let counts = {};
-    gameBoard.boardArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
     const playerOne = playerFactory("X");
     const playerTwo = playerFactory("O");
-    function setMark(field) {
+    function setMark(field, index) {
+        let counts = {};
+        gameBoard.boardArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
         if ((counts.X === undefined) || (counts.X <= counts.O)) {
             field.innerHTML = playerOne.mark
+            gameBoard.boardArray[index] = "X"
         } else {
             field.innerHTML = playerTwo.mark
+            gameBoard.boardArray[index] = "O"
         };
     }
-    gameBoard.topLeft.onclick = function(){setMark(this)};
-    gameBoard.topMiddle.onclick = function(){setMark(this)};
-    gameBoard.topRight.onclick = function(){setMark(this)};
-    gameBoard.centerLeft.onclick = function(){setMark(this)};
-    gameBoard.centerMiddle.onclick = function(){setMark(this)};
-    gameBoard.centerRight.onclick = function(){setMark(this)};
-    gameBoard.bottomLeft.onclick = function(){setMark(this)};
-    gameBoard.bottomMiddle.onclick = function(){setMark(this)};
-    gameBoard.bottomRight.onclick = function(){setMark(this)};
+    gameBoard.topLeft.onclick = function(){setMark(this, 0)};
+    gameBoard.topMiddle.onclick = function(){setMark(this, 1)};
+    gameBoard.topRight.onclick = function(){setMark(this, 2)};
+    gameBoard.centerLeft.onclick = function(){setMark(this, 3)};
+    gameBoard.centerMiddle.onclick = function(){setMark(this, 4)};
+    gameBoard.centerRight.onclick = function(){setMark(this, 5)};
+    gameBoard.bottomLeft.onclick = function(){setMark(this, 6)};
+    gameBoard.bottomMiddle.onclick = function(){setMark(this, 7)};
+    gameBoard.bottomRight.onclick = function(){setMark(this, 8)};
 })();
