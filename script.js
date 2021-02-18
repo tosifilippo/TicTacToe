@@ -8,8 +8,8 @@ const gameBoard = (() => {
     // setting the board as an array with nine strings
     let boardArray = ["","","","","","","","",""];
     // creating player X and player O
-    const playerOne = playerFactory("X");
-    const playerTwo = playerFactory("O");
+    const playerOne = playerFactory("X", "Player One");
+    const playerTwo = playerFactory("O", "Player Two");
     let gameOver;
     let tieGame;
     // looks for winning combination in rows
@@ -61,12 +61,12 @@ const gameBoard = (() => {
             checkTie();
             // checks who won and disables field buttons
             if ((gameOver == true) && (counts.X <= counts.O)) {
-                display.innerHTML = "GAME OVER, X WINS!";
+                display.innerHTML = "GAME OVER, " + playerOne.name + " WINS!";
                 document.querySelectorAll('button.field-button').forEach(element => {
                     element.disabled = true;
                 });
             } else if ((gameOver == true) && (counts.X > counts.O)) {
-                display.innerHTML = "GAME OVER, O WINS!";
+                display.innerHTML = "GAME OVER, " + playerTwo.name + " WINS!";
                 document.querySelectorAll('button.field-button').forEach(element => {
                     element.disabled = true;
                 });
@@ -81,13 +81,21 @@ const gameBoard = (() => {
         };
         declareWinner();
     };
-    // resets board html and array
+    // resets board html, array and game status
     function reset() {
         boardArray = ["","","","","","","","",""];
         document.querySelectorAll('button.field-button').forEach(element => {
             element.innerHTML = "";
+            element.disabled = false;
+            gameOver = false;
+            tieGame = false;
         });
     };
+    // gets player names from input field
+    function getNames() {
+        playerOne.name = firstText.value;
+        playerTwo.name = secondText.value;
+    }
     // targeting elements
     const topLeft = document.getElementById("top-left");
     const topMiddle = document.getElementById("top-middle");
@@ -98,7 +106,10 @@ const gameBoard = (() => {
     const bottomLeft = document.getElementById("bottom-left");
     const bottomMiddle = document.getElementById("bottom-middle");
     const bottomRight = document.getElementById("bottom-right");
-    const restart = document.getElementById("restart")
+    const restart = document.getElementById("restart");
+    const firstText = document.getElementById("player1name");
+    const secondText = document.getElementById("player2name");
+    const submit = document.getElementById("submit");
     // onclick functions
     topLeft.onclick = function(){setMark(this, 0)};
     topMiddle.onclick = function(){setMark(this, 1)};
@@ -110,4 +121,5 @@ const gameBoard = (() => {
     bottomMiddle.onclick = function(){setMark(this, 7)};
     bottomRight.onclick = function(){setMark(this, 8)};
     restart.onclick = reset;
+    submit.onclick = getNames;
 })();
