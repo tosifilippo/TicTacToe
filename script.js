@@ -37,10 +37,10 @@ const gameController = (() => {
     function setMark(field, index) {
         let counts = {};
         gameBoard.boardArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
-        if ((counts.X === undefined) || (counts.X <= counts.O)) {
-            field.innerHTML = playerOne.mark
+        if (((counts.X === undefined) || (counts.X <= counts.O)) && (field.innerHTML === "")) {
+            field.innerHTML = playerOne.mark    
             gameBoard.boardArray[index] = "X"
-        } else {
+        } else if (field.innerHTML === "") {
             field.innerHTML = playerTwo.mark
             gameBoard.boardArray[index] = "O"
         };
