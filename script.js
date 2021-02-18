@@ -11,6 +11,7 @@ const gameBoard = (() => {
     const playerOne = playerFactory("X");
     const playerTwo = playerFactory("O");
     let gameOver;
+    let tieGame;
     // looks for winning combination in rows
     function checkRows() {
         if ((boardArray[0] == boardArray[1]) && (boardArray[1] == boardArray[2]) && (!boardArray[0] == "") ||
@@ -34,6 +35,12 @@ const gameBoard = (() => {
             gameOver = true;
         };
     };
+    // looks for tie
+    function checkTie() {
+        if ((!gameOver == true) && (!boardArray.includes(""))) {
+            tieGame = true;
+        };
+    };
     // counts how many Xs and Os are on the board and determines whose turn it is. 
     // it also looks for winner, does not run unless clicked field is empty.
     function setMark(field, index) {
@@ -49,6 +56,7 @@ const gameBoard = (() => {
         checkRows();
         checkColumns();
         checkDiagonals();
+        checkTie();
         // if game is over field buttons are disabled
         if (gameOver == true) {
             console.log("GAME OVER");
@@ -56,6 +64,13 @@ const gameBoard = (() => {
                 element.disabled = true;
             });
         };
+        // if game is tie field buttons are disabled
+        if (tieGame == true) {
+            console.log("TIE GAME");
+            document.querySelectorAll('button.field-button').forEach(element => {
+                element.disabled = true;
+            });
+        }
     };
     // set mark is returned to be used onclick
     return { setMark };
