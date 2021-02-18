@@ -10,3 +10,7 @@ body {
     text-align: center;
     width: 50%;
 }
+
+#display {
+    grid-column: 1/5;
+}

@@ -54,25 +54,26 @@ const gameBoard = (() => {
             boardArray[index] = "O"
         };
         function declareWinner() {
+            const display = document.getElementById("display");
             checkRows();
             checkColumns();
             checkDiagonals();
             checkTie();
             // checks who won and disables field buttons
             if ((gameOver == true) && (counts.X <= counts.O)) {
-                console.log("GAME OVER, VINCE X!");
+                display.innerHTML = "GAME OVER, VINCE X!";
                 document.querySelectorAll('button.field-button').forEach(element => {
                     element.disabled = true;
                 });
             } else if ((gameOver == true) && (counts.X > counts.O)) {
-                console.log("GAME OVER, VINCE O!");
+                display.innerHTML = "GAME OVER, VINCE O!";
                 document.querySelectorAll('button.field-button').forEach(element => {
                     element.disabled = true;
                 });
             };
             // if game is tie field buttons are disabled
             if (tieGame == true) {
-                console.log("TIE GAME");
+                display.innerHTML = "TIE GAME!"
                 document.querySelectorAll('button.field-button').forEach(element => {
                     element.disabled = true;
                 });
