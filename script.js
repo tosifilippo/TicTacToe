@@ -23,7 +23,7 @@ const gameBoard = (() => {
     bottomRight.innerHTML = boardArray[8];
     boardGrid.append(topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight);
     return {
-        topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight
+        boardArray, topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight
     };
 })();
 
@@ -32,15 +32,24 @@ const playerFactory = (mark) => {
 };
 
 const gameController = (() => {
+    let counts = {};
+    gameBoard.boardArray.forEach(function(x) { counts[x] = (counts[x] || 0)+1; });
     const playerOne = playerFactory("X");
     const playerTwo = playerFactory("O");
-    gameBoard.topLeft.onclick = function(){this.innerHTML = playerOne.mark};
-    gameBoard.topMiddle.onclick = function(){this.innerHTML = playerOne.mark};
-    gameBoard.topRight.onclick = function(){this.innerHTML = playerOne.mark};
-    gameBoard.centerLeft.onclick = function(){this.innerHTML = playerOne.mark};;
-    gameBoard.centerMiddle.onclick = function(){this.innerHTML = playerOne.mark};;
-    gameBoard.centerRight.onclick = function(){this.innerHTML = playerOne.mark};;
-    gameBoard.bottomLeft.onclick = function(){this.innerHTML = playerOne.mark};;
-    gameBoard.bottomMiddle.onclick = function(){this.innerHTML = playerOne.mark};;
-    gameBoard.bottomRight.onclick = function(){this.innerHTML = playerOne.mark};;
+    function setMark(field) {
+        if ((counts.X === undefined) || (counts.X <= counts.O)) {
+            field.innerHTML = playerOne.mark
+        } else {
+            field.innerHTML = playerTwo.mark
+        };
+    }
+    gameBoard.topLeft.onclick = function(){setMark(this)};
+    gameBoard.topMiddle.onclick = function(){setMark(this)};
+    gameBoard.topRight.onclick = function(){setMark(this)};
+    gameBoard.centerLeft.onclick = function(){setMark(this)};
+    gameBoard.centerMiddle.onclick = function(){setMark(this)};
+    gameBoard.centerRight.onclick = function(){setMark(this)};
+    gameBoard.bottomLeft.onclick = function(){setMark(this)};
+    gameBoard.bottomMiddle.onclick = function(){setMark(this)};
+    gameBoard.bottomRight.onclick = function(){setMark(this)};
 })();
