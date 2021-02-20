@@ -70,19 +70,20 @@ const gameBoard = (() => {
             };
         // for AI player an array for all cells is created, first player mark is set (cell must be empty), a random 
         // number is selected (from 0 to 8). If random cell is empty, second player mark is set, otherwise, new random
-        // is selected until empty cell is found.
+        // is selected until empty cell is found (unless game is over).
         } else if (field.innerHTML === "") {
             let cellsArray = [topLeft, topMiddle, topRight, centerLeft, centerMiddle, centerRight, bottomLeft, bottomMiddle, bottomRight];
             field.innerHTML = playerOne.mark;
             boardArray[index] = "X";
             function randomPlay() {
             let random = Math.floor(Math.random() * cellsArray.length);
-            if (cellsArray[random].innerHTML == "") {
+            declareWinner();
+            if ((cellsArray[random].innerHTML == "") && (gameOver == undefined)) {
                 cellsArray[random].innerHTML = playerTwo.mark;
                 boardArray[random] = playerTwo.mark;
             } else if (!boardArray.includes("")) {
                 declareWinner();
-            } else {
+            } else if (gameOver == undefined) {
                 randomPlay();
             };
             };
@@ -133,13 +134,15 @@ const gameBoard = (() => {
         playerTwo.name = secondText.value.toUpperCase();
         if (playerOne.name == "") {
             playerOne.name = "PLAYER ONE"
-        }
+        };
         if (playerTwo.name == "") {
             playerTwo.name = "PLAYER TWO"
-        }
+        };
         if (form[3].checked) {
             playerTwo.species = "AI"
-        }
+        } else {
+            playerTwo.species = "HUMAN"
+        };
         // updates match details
         const vs = document.getElementById("VS");
         vs.innerHTML = playerOne.name + " (" + playerOne.species + ") vs " + playerTwo.name + " (" + playerTwo.species + ")";
