@@ -9,17 +9,17 @@
     <h1>TIC TAC TOE!</h1>
     <h2 id="VS"></h2>
     <form id="form">
-        <label for="player1name">Name of First Player:</label>
+        <label for="player1name">First Player:</label>
         <input type="text" id="player1name" placeholder="First Player Name"><br><br>
-        <label for="player2name">Name of Second Player:</label>
+        <label for="player2name">Second Player:</label>
         <input type="text" id="player2name" placeholder="Second Player Name">
-        <label for="human">Human</label>
+        <label for="human" id="human-label">Human</label>
         <input type="radio" name="species" value="human" id="human">
         <label for="AI">A.I.</label>
         <input type="radio" name="species" value="AI" id="AI">
     </form>
     <br><br>
-    <button id="submit">Submit</button>
+    <button id="submit">Start!</button>
     <div id="board-grid">
         <button class="field-button" id="top-left"></button>
         <button class="field-button" id="top-middle"></button>

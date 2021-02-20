@@ -2,10 +2,87 @@ body {
     text-align: center;
 }
 
+h1 {
+    font-size: 300%;
+}
+
+h2 {
+    font-size: 215%;
+}
+
+label {
+    font-size: 150%;
+}
+
+input {
+    font-size: 130%;
+    text-align: center;
+}
+
 #board-grid {
     display: grid;
     grid-template-columns: 130px 130px 130px;
     grid-template-rows: 130px 130px 130px;
     text-align: center;
     justify-content: center;
+}
+
+#submit {
+    margin-bottom: 3%;
+    font-size: xx-large;
+}
+
+#human-label {
+    margin-left: 2%;
+}
+
+#display {
+    margin-top: 4%;
+    font-size: xx-large;
+}
+
+#restart {
+    font-size: xx-large;
+}
+
+.field-button {
+    background-color: white;
+    outline: transparent;
+    font-size: 400%;
+}
+
+#top-left {
+    border-top: none;
+    border-left: none;
+}
+
+#top-middle {
+    border-top: none;
+}
+
+#top-right {
+    border-top: none;
+    border-right: none;
+}
+
+#center-left {
+    border-left: none;
+}
+
+#center-right {
+    border-right: none;
+}
+
+#bottom-left {
+    border-bottom: none;
+    border-left: none;
+}
+
+#bottom-middle {
+    border-bottom: none;
+}
+
+#bottom-right {
+    border-bottom: none;
+    border-right: none;
 }
