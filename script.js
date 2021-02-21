@@ -145,7 +145,7 @@ const gameBoard = (() => {
             playerTwo.name = "PLAYER TWO"
         };
         if (form[3].checked) {
-            playerTwo.species = "AI"
+            playerTwo.species = "BOT"
         } else {
             playerTwo.species = "HUMAN"
         };
