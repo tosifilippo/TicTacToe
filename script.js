@@ -119,16 +119,23 @@ const gameBoard = (() => {
     };
     // resets board html, array and game status
     function reset() {
+        getNames();
         boardArray = ["","","","","","","","",""];
-        document.querySelectorAll('button.field-button').forEach(element => {
+        fields.forEach(element => {
             element.innerHTML = "";
             element.disabled = false;
             gameOver = undefined;
             tieGame = undefined;
         });
+        display.innerHTML = playerOne.name + " (" + playerOne.species + ") vs " + playerTwo.name + " (" + playerTwo.species + ")";
     };
     // gets player names and species from input field
     function getNames() {
+        submit.hidden = true;  
+        restart.hidden = false; 
+        fields.forEach(element => {
+            element.hidden = false;
+        });
         playerOne.name = firstText.value.toUpperCase();
         playerTwo.name = secondText.value.toUpperCase();
         if (playerOne.name == "") {
@@ -160,6 +167,7 @@ const gameBoard = (() => {
     const secondText = document.getElementById("player2name");
     const submit = document.getElementById("submit");
     const form = document.getElementById("form");
+    const fields = document.querySelectorAll('button.field-button')
     // onclick functions
     topLeft.onclick = function(){setMark(this, 0)};
     topMiddle.onclick = function(){setMark(this, 1)};

@@ -7,7 +7,8 @@ body {
 
 h1 {
     font-size: 300%;
-    font-family: 'Permanent Marker', cursive;
+    font-weight: 900;
+    font-family: 'Lato', sans-serif;
 }
 
 label {
@@ -31,7 +32,7 @@ input {
 input::placeholder {
     color: #F26b31;
     font-family: 'Bebas Neue', cursive;
-    opacity: 50%;
+    opacity: 40%;
 }
 
 #board-grid {
@@ -49,6 +50,29 @@ input::placeholder {
     border:  #Fff6bd;
     cursor: pointer;
     font-family: 'Bebas Neue', cursive;
+    grid-area: 2 / 2 / 3 / 3;
+    border: solid 5px;
+    box-shadow: 0 0 0 0 #F26b31;
+	transform: scale(1);
+    animation: pulse 2.5s infinite;
+    border-radius: 50%;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 #F26b31;
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px #F26b31;
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 #F26b31;
+	}
 }
 
 .species-label {
@@ -61,17 +85,24 @@ input::placeholder {
 
 #display {
     font-size: xx-large;
-    margin-bottom: 4%;
+    margin-bottom: 2%;
+    margin-top: 4%;
 }
 
 #restart {
-    margin-top: 4%;
+    width: 4em;
+    height: 4em;
     font-size: xx-large;
     background-color: #F26b31;
     color: #Fff6bd;
     border:  #Fff6bd;
+    border: solid 5px;
     cursor: pointer;
     font-family: 'Bebas Neue', cursive;
+    box-shadow: 0 0 0 0 #F26b31;
+	transform: scale(1);
+    animation: pulse 2.5s infinite;
+    border-radius: 50%;
 }
 
 .field-button {
@@ -80,43 +111,9 @@ input::placeholder {
     background-color: #F26b31;
     color: #Fff6bd;
     border: 5px solid #Fff6bd;
-    font-family: 'Permanent Marker', cursive;
-}
+    font-family: 'Lato', sans-serif;
+    border-radius: 50%;
 
-#top-left {
-    border-top: none;
-    border-left: none;
-}
-
-#top-middle {
-    border-top: none;
-}
-
-#top-right {
-    border-top: none;
-    border-right: none;
-}
-
-#center-left {
-    border-left: none;
-}
-
-#center-right {
-    border-right: none;
-}
-
-#bottom-left {
-    border-bottom: none;
-    border-left: none;
-}
-
-#bottom-middle {
-    border-bottom: none;
-}
-
-#bottom-right {
-    border-bottom: none;
-    border-right: none;
 }
 
 input[type='radio']:after {
@@ -145,4 +142,8 @@ input[type='radio']:checked:after {
     display: inline-block;
     visibility: visible;
     border: 2px solid #Fff6bd;
+}
+
+button:disabled {
+    opacity: 50%;
 }
