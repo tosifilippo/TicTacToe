@@ -122,7 +122,6 @@ const gameBoard = (() => {
         boardArray = ["","","","","","","","",""];
         document.querySelectorAll('button.field-button').forEach(element => {
             element.innerHTML = "";
-            display.innerHTML = "";
             element.disabled = false;
             gameOver = undefined;
             tieGame = undefined;
@@ -144,8 +143,7 @@ const gameBoard = (() => {
             playerTwo.species = "HUMAN"
         };
         // updates match details
-        const vs = document.getElementById("VS");
-        vs.innerHTML = playerOne.name + " (" + playerOne.species + ") vs " + playerTwo.name + " (" + playerTwo.species + ")";
+        display.innerHTML = playerOne.name + " (" + playerOne.species + ") vs " + playerTwo.name + " (" + playerTwo.species + ")";
     }
     // targeting elements
     const topLeft = document.getElementById("top-left");

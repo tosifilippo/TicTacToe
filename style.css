@@ -1,13 +1,13 @@
 body {
     text-align: center;
+    background-color: #Fff6bd;
+    color: #F26b31;
+    font-family: 'Bebas Neue', cursive;
 }
 
 h1 {
     font-size: 300%;
-}
-
-h2 {
-    font-size: 215%;
+    font-family: 'Permanent Marker', cursive;
 }
 
 label {
@@ -17,6 +17,21 @@ label {
 input {
     font-size: 130%;
     text-align: center;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #Fff6bd;
+    border-color: #F26b31;
+    color: #F26b31;
+    outline: none;
+    margin-left: 1%;
+    font-family: 'Bebas Neue', cursive;
+}
+
+input::placeholder {
+    color: #F26b31;
+    font-family: 'Bebas Neue', cursive;
+    opacity: 50%;
 }
 
 #board-grid {
@@ -28,8 +43,16 @@ input {
 }
 
 #submit {
-    margin-bottom: 3%;
     font-size: xx-large;
+    background-color: #F26b31;
+    color: #Fff6bd;
+    border:  #Fff6bd;
+    cursor: pointer;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.species-label {
+    margin-left: 1%;
 }
 
 #human-label {
@@ -37,18 +60,27 @@ input {
 }
 
 #display {
-    margin-top: 4%;
     font-size: xx-large;
+    margin-bottom: 4%;
 }
 
 #restart {
+    margin-top: 4%;
     font-size: xx-large;
+    background-color: #F26b31;
+    color: #Fff6bd;
+    border:  #Fff6bd;
+    cursor: pointer;
+    font-family: 'Bebas Neue', cursive;
 }
 
 .field-button {
-    background-color: white;
     outline: transparent;
-    font-size: 400%;
+    font-size: 500%;
+    background-color: #F26b31;
+    color: #Fff6bd;
+    border: 5px solid #Fff6bd;
+    font-family: 'Permanent Marker', cursive;
 }
 
 #top-left {
@@ -85,4 +117,32 @@ input {
 #bottom-right {
     border-bottom: none;
     border-right: none;
+}
+
+input[type='radio']:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #Fff6bd;
+}
+
+input[type='radio']:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #F26b31;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid #Fff6bd;
 }
